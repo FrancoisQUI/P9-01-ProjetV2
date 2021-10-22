@@ -1,0 +1,15 @@
+
+<div>
+    {% if request.user.is_authenticated %}
+        <ul class="container flex">
+            <li><a href="">Flux</a></li>
+            <li><a href="">Posts</a></li>
+            <li><a href="">Abonnement</a></li>
+            <li><a href="">Se déconnecter</a></li>
+        </ul>
+    {% else %}
+        <ul class="container flex">
+            <li><a href="{% url 'signup' %}">s'inscrire</a></li>
+        </ul>
+    {% endif %}
+</div>

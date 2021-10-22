@@ -1,0 +1,8 @@
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_ul }}
+        <input type="submit" value="se connecter">
+    </form>
+{% endblock %}
+

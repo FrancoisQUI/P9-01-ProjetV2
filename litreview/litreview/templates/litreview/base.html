@@ -1,0 +1,19 @@
+{% load tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LIT Review</title>
+    {% tailwind_css %}
+</head>
+<body>
+<header class="container flex h-10 space-between bl">
+    {% include "litreview/site-branding.html" %}
+    {% include "litreview/navigation.html" %}
+</header>
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+</body>
+</html>
