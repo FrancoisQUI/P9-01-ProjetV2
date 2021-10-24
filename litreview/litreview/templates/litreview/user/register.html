@@ -1,0 +1,11 @@
+{% extends "litreview/base.html" %}
+{% load static %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_ul }}
+        <input type="submit" name="register" id="user_register_submit" value="Enregistrer votre identifiant">
+    </form>
+{% endblock %}
+

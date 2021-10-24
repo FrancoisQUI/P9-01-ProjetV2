@@ -1,0 +1,18 @@
+{% extends 'litreview/base.html' %}
+
+{% block content %}
+    <div>
+        <div>
+            <p>inscrivez vous maintenant</p>
+            <a href="{% url "signup" %}">S'inscrire</a>
+        </div>
+        <div>
+            {% if not request.user.is_authenticated %}
+                {% include "litreview/user/login.html" %}
+            {% else %}
+                Connecté en tant que {{ request.user }}
+                <a href="{% url "logout" %}">se déconnecter ?</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
