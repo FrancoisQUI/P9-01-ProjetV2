@@ -4,7 +4,7 @@
     <h1>Liste des Tickets</h1>
     <ul>
         {% for ticket in tickets %}
-            <li>{{ ticket }}</li>
+            <li><a href="{% url 'ticket_detail' ticket.pk %}">{{ ticket }}</a></li>
         {% endfor %}
     </ul>
 

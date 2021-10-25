@@ -12,7 +12,7 @@ class Ticket(models.Model):
     time_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.id} - {self.title} - {self.user.username}"
+        return f"{self.pk} - {self.title} - {self.user.username}"
 
     def get_absolute_url(self):
         from django.urls import reverse

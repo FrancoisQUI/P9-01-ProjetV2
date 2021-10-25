@@ -810,3 +810,7 @@ select {
 .h-10 {
   height: 2.5rem;
 }
+
+.flex-col {
+  flex-direction: column;
+}
