@@ -1,0 +1,11 @@
+{% extends 'litreview/base.html' %}
+
+{% block content %}
+    <div class="container flex flex-col">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_ul }}
+            <button type="submit">Envoyer le Ticket</button>
+        </form>
+    </div>
+{% endblock %}

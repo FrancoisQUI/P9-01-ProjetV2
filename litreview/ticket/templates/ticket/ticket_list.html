@@ -1,0 +1,11 @@
+{% extends 'litreview/base.html' %}
+
+{% block content %}
+    <h1>Liste des Tickets</h1>
+    <ul>
+        {% for ticket in tickets %}
+            <li><a href="{% url 'ticket_detail' ticket.pk %}">{{ ticket }}</a></li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

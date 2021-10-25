@@ -5,11 +5,11 @@
             <li><a href="">Flux</a></li>
             <li><a href="">Posts</a></li>
             <li><a href="">Abonnement</a></li>
-            <li><a href="">Se déconnecter</a></li>
+            <li><a href="{% url "logout" %}">Se déconnecter</a></li>
         </ul>
     {% else %}
         <ul class="container flex">
-            <li><a href="{% url 'signup' %}">s'inscrire</a></li>
+            <li><a href="{% url "signup" %}">s'inscrire</a></li>
         </ul>
     {% endif %}
 </div>
