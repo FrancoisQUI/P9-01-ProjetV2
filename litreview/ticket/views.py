@@ -49,7 +49,7 @@ class TicketUpdateView(LoginRequiredMixin, UpdateView):
 
 class TicketDeleteView(LoginRequiredMixin, DeleteView):
     model = Ticket
-    success_url = reverse_lazy('post')
+    success_url = reverse_lazy('ticket_list')
     login_url = ''
     redirect_field_name = 'redirect_to'
     context_object_name = "ticket"
