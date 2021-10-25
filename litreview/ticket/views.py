@@ -1,7 +1,7 @@
 from django import forms
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, UpdateView, CreateView, DeleteView, ListView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from ticket.models import Ticket
 
@@ -35,7 +35,7 @@ class TicketCreateView(LoginRequiredMixin, CreateView):
         widgets = {'image': forms.ImageField()}
 
 
-class TicketUpdateView(LoginRequiredMixin, UpdateView):
+class TicketUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Ticket
     fields = ['title', 'description', 'image']
     login_url = ''
@@ -46,10 +46,20 @@ class TicketUpdateView(LoginRequiredMixin, UpdateView):
         form.instance.user_id = self.request.user.id
         return super().form_valid(form)
 
+    def test_func(self):
+        self.object = self.get_object()
+        return self.object.user == self.request.user
 
-class TicketDeleteView(LoginRequiredMixin, DeleteView):
+
+class TicketDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     model = Ticket
     success_url = reverse_lazy('ticket_list')
     login_url = ''
     redirect_field_name = 'redirect_to'
     context_object_name = "ticket"
+
+    def test_func(self):
+        self.object = self.get_object()
+        return self.object.user == self.request.user
+
+
