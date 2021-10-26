@@ -1,7 +1,7 @@
-from django import forms
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView
 
+from review.forms import ReviewForm
 from review.models import Review
 
 
@@ -20,8 +20,8 @@ class ReviewDetailView(LoginRequiredMixin, DetailView):
 
 
 class ReviewCreateView(LoginRequiredMixin, CreateView):
-    model = Review
-    fields = ['rating', 'headline', 'body']
+    form_class = ReviewForm
+    template_name = 'review/review_form.html'
     login_url = ''
     redirect_field_name = 'redirect_to'
     context_object_name = "review"
@@ -30,5 +30,3 @@ class ReviewCreateView(LoginRequiredMixin, CreateView):
         form.instance.user_id = self.request.user.id
         return super().form_valid(form)
 
-    class Meta:
-        widget = {'rating': forms.RadioSelect()}
