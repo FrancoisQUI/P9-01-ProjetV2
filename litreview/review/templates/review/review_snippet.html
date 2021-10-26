@@ -1,0 +1,16 @@
+<div class="container flex flex-col">
+    <h1>Une critique de "{{ review.ticket.title }}" par {{ review.user.username }} du {{ review.time_created }}</h1>
+    <div class="container flex bg-blue-200">
+        {% include "ticket/ticket_snippet.html" with ticket=review.ticket %}
+    </div>
+    <div class="container flex flex-col">
+        <div class="container flex">
+            <h2>Mon avis : </h2>
+            <p> {{ review.rating }}</p>
+        </div>
+        <div>
+            <h2>{{ review.headline }}</h2>
+            <p>{{ review.body }}</p>
+        </div>
+    </div>
+</div>

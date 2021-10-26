@@ -814,3 +814,8 @@ select {
 .flex-col {
   flex-direction: column;
 }
+
+.bg-blue-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgba(191, 219, 254, var(--tw-bg-opacity));
+}

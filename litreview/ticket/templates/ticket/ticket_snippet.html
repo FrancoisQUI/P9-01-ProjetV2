@@ -1,13 +1,11 @@
-{% block content %}
-    <div class="container flex">
-        <div class="container flex flex-col">
-            <h1>{{ ticket.title }}</h1>
-            <p>proposé par {{ ticket.user.username }} le {{ ticket.time_created }}</p>
-            <h2>description :</h2>
-            <p>{{ ticket.description }}</p>
-        </div>
-        <div class="container flex">
-            <img src="{{ ticket.image.url }}" alt="La couverture du livre {{ ticket.title }}">
-        </div>
+<div class="container flex">
+    <div class="container flex flex-col">
+        <h1>{{ ticket.title }}</h1>
+        <p>proposé par {{ ticket.user.username }} le {{ ticket.time_created }}</p>
+        <h2>description :</h2>
+        <p>{{ ticket.description }}</p>
     </div>
-{% endblock %}
+    <div class="container flex">
+        <img src="{{ ticket.image.url }}" alt="La couverture du livre {{ ticket.title }}">
+    </div>
+</div>
