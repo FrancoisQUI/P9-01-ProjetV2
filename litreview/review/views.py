@@ -8,14 +8,14 @@ from review.models import Review
 
 class ReviewListView(LoginRequiredMixin, ListView):
     model = Review
-    login_url = ''
+    login_url = 'home'
     redirect_field_name = 'redirect_to'
     context_object_name = "reviews"
 
 
 class ReviewDetailView(LoginRequiredMixin, DetailView):
     model = Review
-    login_url = ''
+    login_url = 'home'
     redirect_field_name = 'redirect_to'
     context_object_name = "review"
 
@@ -24,7 +24,7 @@ class ReviewCreateView(LoginRequiredMixin, CreateView):
     model = Review
     form_class = ReviewCreateForm
     template_name = 'review/review_create_form.html'
-    login_url = ''
+    login_url = 'home'
     redirect_field_name = 'redirect_to'
     context_object_name = "review"
 
@@ -37,7 +37,7 @@ class ReviewUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Review
     form_class = ReviewUpdateForm
     template_name = 'review/review_update_form.html'
-    login_url = ''
+    login_url = 'home'
     redirect_field_name = 'redirect_to'
     context_object_name = "review"
 
@@ -53,7 +53,7 @@ class ReviewUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
 class ReviewDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     model = Review
     success_url = reverse_lazy('review_list')
-    login_url = ''
+    login_url = 'home'
     redirect_field_name = 'redirect_to'
     context_object_name = "review"
 
