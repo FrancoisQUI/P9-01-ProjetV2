@@ -1,0 +1,12 @@
+{% extends "litreview/base.html" %}
+
+{% block content %}
+    <div class="container flex">
+        <form method="post">
+            {% csrf_token %}
+            <p>voulez vous arrêter de suivre {{ follow.followed_user.name }} ?</p>
+            <button class="bg-red-500 hover:bg-red-900" type="submit">Oui je suis sûr !</button>
+        </form>
+    </div>
+
+{% endblock %}
