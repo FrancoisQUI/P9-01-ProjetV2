@@ -8,14 +8,14 @@ from ticket.models import Ticket
 
 class TicketListView(LoginRequiredMixin, ListView):
     model = Ticket
-    login_url = ''
+    login_url = 'home'
     redirect_field_name = 'redirect_to'
     context_object_name = "tickets"
 
 
 class TicketDetailView(LoginRequiredMixin, DetailView):
     model = Ticket
-    login_url = ''
+    login_url = 'home'
     redirect_field_name = 'redirect_to'
     context_object_name = "ticket"
 
@@ -23,7 +23,7 @@ class TicketDetailView(LoginRequiredMixin, DetailView):
 class TicketCreateView(LoginRequiredMixin, CreateView):
     model = Ticket
     fields = ['title', 'description', 'image']
-    login_url = ''
+    login_url = 'home'
     redirect_field_name = 'redirect_to'
     context_object_name = "ticket"
 
@@ -38,7 +38,7 @@ class TicketCreateView(LoginRequiredMixin, CreateView):
 class TicketUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Ticket
     fields = ['title', 'description', 'image']
-    login_url = ''
+    login_url = 'home'
     redirect_field_name = 'redirect_to'
     context_object_name = "ticket"
 
@@ -54,7 +54,7 @@ class TicketUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
 class TicketDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     model = Ticket
     success_url = reverse_lazy('ticket_list')
-    login_url = ''
+    login_url = 'home'
     redirect_field_name = 'redirect_to'
     context_object_name = "ticket"
 
