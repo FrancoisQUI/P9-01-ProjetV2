@@ -1,0 +1,12 @@
+{% extends "litreview/base.html" %}
+
+{% block content %}
+            <div class="container flex flex-col">
+            <form method="post">
+                {% csrf_token %}
+                <p>voulez vous vraiment supprimer la critiquer de {{ review.ticket.title }} ?</p>
+                <button type="submit">Oui je suis sûr !</button>
+            </form>
+        </div>
+
+{% endblock %}

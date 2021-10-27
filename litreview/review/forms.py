@@ -3,8 +3,15 @@ from django.forms import ModelForm, RadioSelect
 from review.models import Review
 
 
-class ReviewForm(ModelForm):
+class ReviewCreateForm(ModelForm):
     class Meta:
         model = Review
         fields = ["ticket", "rating", "headline", "body"]
+        widgets = {"rating": RadioSelect()}
+
+
+class ReviewUpdateForm(ModelForm):
+    class Meta:
+        model = Review
+        fields = ["rating", "headline", "body"]
         widgets = {"rating": RadioSelect()}
