@@ -17,13 +17,18 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+
 from . import views
+from my_posts.views import my_posts_view
+
+
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('', views.index, name='home'),
                   path('signup/', views.SignUpView.as_view(), name='signup'),
                   path('logout/', views.disconnect, name='logout'),
+                  path('posts/', my_posts_view, name='posts'),
                   path('ticket/', include('ticket.urls')),
                   path('review/', include('review.urls')),
                   path('follows/', include('user_follow.urls')),
