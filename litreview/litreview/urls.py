@@ -20,6 +20,7 @@ from django.urls import path, include
 
 from . import views
 from my_posts.views import my_posts_view
+from feed.views import feed_view
 
 
 
@@ -29,6 +30,7 @@ urlpatterns = [
                   path('signup/', views.SignUpView.as_view(), name='signup'),
                   path('logout/', views.disconnect, name='logout'),
                   path('posts/', my_posts_view, name='posts'),
+                  path('feed/', feed_view, name='feed'),
                   path('ticket/', include('ticket.urls')),
                   path('review/', include('review.urls')),
                   path('follows/', include('user_follow.urls')),
