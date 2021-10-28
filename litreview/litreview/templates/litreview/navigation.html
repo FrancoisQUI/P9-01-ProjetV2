@@ -3,8 +3,8 @@
     {% if request.user.is_authenticated %}
         <ul class="container flex">
             <li><a href="">Flux</a></li>
-            <li><a href="">Posts</a></li>
-            <li><a href="">Abonnement</a></li>
+            <li><a href="{% url "posts" %}">Posts</a></li>
+            <li><a href="{% url "follows" %}">Abonnement</a></li>
             <li><a href="{% url "logout" %}">Se déconnecter</a></li>
         </ul>
     {% else %}
@@ -13,3 +13,7 @@
         </ul>
     {% endif %}
 </div>
+
+<style>
+
+</style>
