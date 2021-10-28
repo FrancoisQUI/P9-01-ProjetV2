@@ -1,7 +1,6 @@
 {% extends "litreview/base.html" %}
 
 {% block content %}
-    {{ posts|pprint }}
     {% for post in posts %}
         {% if post.content_type == 'TICKET' %}
             {% include 'ticket/ticket_snippet.html' with ticket=post %}

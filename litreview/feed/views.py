@@ -30,4 +30,4 @@ def feed_view(request):
     # remove duplicates
     posts = list(dict.fromkeys(posts))
 
-    return render(request, template_name='feed/feed.html', context={'posts': posts, 'followed_users': followed_users})
+    return render(request, template_name='feed/feed.html', context={'posts': posts})
