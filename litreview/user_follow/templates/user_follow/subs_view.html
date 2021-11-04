@@ -2,36 +2,42 @@
 
 {% block content %}
     {% if request.user.is_authenticated%}
-        <div class="container flex flex-col">
-            <h2>Suivre d'autres utilisateurs</h2>
-            <form method="POST">
-                {% csrf_token %}
-                {{ form.as_ul }}
-                {% if error_message is not None %}
-                    <p class="text-red-500"> {{ error_message }} </p>
-                {% endif %}
-                <button type="submit">Suivre</button>
-            </form>
-        </div>
-        <div class="container flex flex-col">
-            <h2>Vos abonnements</h2>
-            <ul class="container flex flex-wrap">
-                {% for follow in follows %}
-                    <li class="md:w-6/12 flex items-center justify-center bg-blue-200 h-20 flex-shrink-0">
-                        <p class="w-6/12 flex items-center justify-center">{{ follow.followed_user }}</p>
-                        <form action="{% url 'follows_delete' follow.id%}"
-                              class="w-6/12 flex items-center justify-center">
-                            <button type="submit" class="w-6/12 bg-red-500">Remove</button>
-                        </form>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="container flex flex-col">
-            <h2>Vos Abonnés</h2>
-            {% for follower in followers %}
-                {{ follower.user }}
-            {% endfor %}
+        <div class="container w-full md:w-10/12 flex-row justify-center items-center align-middle m-auto">
+            <div class="container flex flex-col">
+                <h2>Suivre d'autres utilisateurs</h2>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_ul }}
+                    {% if error_message is not None %}
+                        <p class="text-red-500"> {{ error_message }} </p>
+                    {% endif %}
+                    <button type="submit">Suivre</button>
+                </form>
+            </div>
+            <div class="container flex flex-col">
+                <h2>Vos abonnements</h2>
+                <ul class="container flex flex-wrap">
+                    {% for follow in follows %}
+                        <li class="w-full md:w-6/12 flex items-center justify-center bg-blue-200 h-20 flex-shrink-0">
+                            <p class="w-full flex items-center justify-center">{{ follow.followed_user }}</p>
+                            <form action="{% url 'follows_delete' follow.id %}"
+                                  class="w-6/12 flex items-center justify-center">
+                                <button type="submit" class="bg-red-500">Enlever</button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="container flex flex-col">
+                <h2>Vos Abonnés</h2>
+                <ul class="container flex flex-wrap">
+                    {% for follower in followers %}
+                        <li class="w-full  md:w-6/12 flex items-center justify-center bg-blue-200 h-20 flex-shrink-0">
+                            {{ follower.user }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     {% endif %}
 

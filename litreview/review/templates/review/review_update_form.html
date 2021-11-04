@@ -7,9 +7,11 @@
         </div>
         <form method="POST">
             {% csrf_token %}
-            {{ form|pprint }}
             {{ form.as_ul }}
-            <button type="submit">Envoyer le Commentaire</button>
+            <div class="container flex flex-row">
+                <button type="submit">Envoyer la critique</button>
+                <a href="{% url 'feed' %}" class="button">Retour</a>
+            </div>
         </form>
     </div>
 {% endblock %}

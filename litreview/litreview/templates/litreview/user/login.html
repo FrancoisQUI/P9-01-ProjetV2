@@ -1,8 +1,8 @@
 {% block content %}
-    <form method="POST">
+    <form method="POST" class="flex flex-col items-center justify-center p-3">
         {% csrf_token %}
         {{ form.as_ul }}
-        <button type="submit">Se connecter</button>
+        <button type="submit" class="w-10/12">Se connecter</button>
     </form>
 {% endblock %}
 

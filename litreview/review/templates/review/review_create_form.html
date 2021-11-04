@@ -1,12 +1,37 @@
 {% extends "litreview/base.html" %}
 
 {% block content %}
-    <div class="container flex flex-col">
+    <h1 class="text-2xl text-center">Créer une Critique</h1>
+    <div class="container flex flex-col w-10/12 m-auto border border-2 border-gray-500 border-solid p-3">
         <form method="POST">
             {% csrf_token %}
-            {{ form|pprint }}
-            {{ form.as_ul }}
-            <button type="submit">Envoyer le Commentaire</button>
+
+            <div class="container flex flex-col">
+                {% if ticket %}
+                    <p>Vous allez proposer une critique pour</p>
+                    {% include "ticket/ticket_snippet.html" with ticket=ticket %}
+                {% else %}
+                    <label for="{{ form.ticket.label }}">Ticket critiqué</label>
+                    {{ form.ticket }}
+                {% endif %}
+            </div>
+            <div class="container flex flex-col">
+                <label for="{{ form.rating.label }}">Votre note</label>
+                {{ form.rating }}
+            </div>
+            <div class="container flex flex-col">
+                <label for="{{ form.headline.label }}">Phrase d'accorche de votre critique</label>
+                {{ form.headline }}
+            </div>
+            <div class="container flex flex-col">
+                <label for="{{ form.body.label }}">Votre critique</label>
+                {{ form.body }}
+            </div>
+
+            <div class="container flex flex-row">
+                <button type="submit">Envoyer la critique</button>
+                <a href="{% url 'home' %}" class="button">Retour</a>
+            </div>
         </form>
     </div>
 {% endblock %}

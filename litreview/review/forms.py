@@ -15,3 +15,13 @@ class ReviewUpdateForm(ModelForm):
         model = Review
         fields = ["rating", "headline", "body"]
         widgets = {"rating": RadioSelect()}
+
+
+class ReviewFormFromTicket(ModelForm):
+    class Meta:
+        model = Review
+        fields = ["rating", "headline", "body"]
+        widgets = {"rating": RadioSelect()}
+
+
+

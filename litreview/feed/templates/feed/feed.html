@@ -1,11 +1,15 @@
 {% extends "litreview/base.html" %}
 
 {% block content %}
+    {% include 'litreview/create_buttons.html' %}
     {% for post in posts %}
-        {% if post.content_type == 'TICKET' %}
-            {% include 'ticket/ticket_snippet.html' with ticket=post %}
-        {% elif post.content_type == 'REVIEW' %}
-            {% include 'review/review_snippet.html' with review=post %}
-        {% endif %}
+        <div class="shadow-xl border border-solid border-2 border-gray-500 my-10">
+            {% if post.content_type == 'TICKET' %}
+                {% include 'ticket/ticket_snippet.html' with ticket=post %}
+            {% elif post.content_type == 'REVIEW' %}
+                {% include 'review/review_snippet.html' with review=post %}
+            {% endif %}
+        </div>
     {% endfor %}
+
 {% endblock %}

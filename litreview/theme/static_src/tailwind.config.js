@@ -52,12 +52,6 @@ module.exports = {
     ],
     darkMode: false, // or 'media' or 'class'
     theme: {
-        colors: {
-            transparent: 'transparent',
-            current: 'currentColor',
-            orange: colors.orange,
-            cyan: colors.cyan,
-        },
         extend: {},
     },
     variants: {

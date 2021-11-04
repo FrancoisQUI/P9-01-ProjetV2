@@ -1,11 +1,22 @@
-<div class="container flex">
-    <div class="container flex flex-col">
-        <h1>{{ ticket.title }}</h1>
-        <p>proposé par {{ ticket.user.username }} le {{ ticket.time_created }}</p>
-        <h2>description :</h2>
-        <p>{{ ticket.description }}</p>
-    </div>
-    <div class="container flex">
+<div class="w-full bg-blue-100 rounded-lg sahdow-lg overflow-hidden flex flex-col md:flex-row">
+    {% if ticket.image %}
+        <div class="w-full md:w-2/5 h-100">
         <img src="{{ ticket.image.url }}" alt="La couverture du livre {{ ticket.title }}">
+    </div>
+    {% endif %}
+    <div class="w-full md:w-3/5 text-left p-6 md:p-4 space-y-2">
+        <h2 class="text-xl text-gray-700 font-bold">{{ ticket.title }}</h2>
+        <p class="text-base text-gray-400 font-normal">proposé par {{ ticket.user.username }} le {{ ticket.time_created }}</p>
+        <p class="text-base leading-relaxed text-gray-500 font-normal">{{ ticket.description }}</p>
+        {% if not show_ticket_only %}
+            {% if request.user == ticket.user%}
+                <div class="flex justify-start space-x-2">
+                    <a class="button" href="{% url 'ticket_edit' ticket.pk %}">Modifier le ticket</a>
+                    <a href="{% url 'ticket_delete' ticket.pk %}" class="button bg-red-500">Supprimer ce ticket</a>
+                </div>
+            {% elif request.user.is_authenticated %}
+                <a href="{% url 'review_create_from_ticket' ticket.pk %}" class="button">Faire une critique de ce ticket</a>
+            {% endif %}
+        {% endif %}
     </div>
 </div>

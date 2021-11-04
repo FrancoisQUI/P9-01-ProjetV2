@@ -1,11 +1,34 @@
 {% extends 'litreview/base.html' %}
 
 {% block content %}
-    <div class="container flex flex-col">
+    <div class="container flex flex-col w-full md:w-10/12 m-auto border border-solid border-2 border-gray-500 p-3">
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.as_ul }}
-            <button type="submit">Envoyer le Ticket</button>
+            <div class="container flex flex-col">
+                <label for="{{ form.title.label }}">Titre de l'objet</label>
+                {{ form.title }}
+            </div>
+            <div class="container flex flex-col">
+                <label for="{{ form.description.label }}">Description de l'élément à critiquer</label>
+                {{ form.description }}
+            </div>
+            <div class="container flex flex-col border border-solid border-2 border-gray-500 p-3">
+                <label for="{{ form.image.label }}">Image de l'objet</label>
+                <div class="container flex flex-row justify-around">
+                    {% if ticket.image.url %}
+                        <div class="w-full md:w-2/5 h-100">
+                            <img src="{{ ticket.image.url }}" alt="La couverture du livre {{ ticket.title }}">
+                        </div>
+                    {% endif %}
+                    <div class="w-full md:w-2/5 h-100">
+                        {{ form.image }}
+                    </div>
+                </div>
+            </div>
+            <div class="container flex flex-row">
+                <button type="submit">Envoyer le Ticket</button>
+                <a href="{% url 'feed' %}" class="button">Retour</a>
+            </div>
         </form>
     </div>
 {% endblock %}

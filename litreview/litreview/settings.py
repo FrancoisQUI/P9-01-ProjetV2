@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'feed'
 LOGIN_URL = ''
 
 
@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tailwind',
     'theme',
-    'ticket', 'review', 'user_follow', 'my_posts', 'feed'
+    'ticket', 'review', 'user_follow', 'my_posts', 'feed',
 ]
 
 MIDDLEWARE = [

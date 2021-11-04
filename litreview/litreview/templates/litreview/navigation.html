@@ -1,13 +1,12 @@
 
-<ul class="container flex flex-col md:flex-row
-                w-screen" id="navigation">
+<ul class="m-auto container justify-center md:justify-end flex flex-row flex-wrap w-screen items-stretch align-middle" id="navigation">
     {% if request.user.is_authenticated %}
-        <li><a href="{% url "feed" %}">Flux</a></li>
-        <li><a href="{% url "posts" %}">Posts</a></li>
-        <li><a href="{% url "follows" %}">Abonnement</a></li>
-        <li><a href="{% url "logout" %}">Se déconnecter</a></li>
+        <li><a href="{% url "feed" %}" class="block w-100 h-100">Flux</a></li>
+        <li><a href="{% url "posts" %}" class="block w-100 h-100">Posts</a></li>
+        <li><a href="{% url "follows" %}" class="block w-100 h-100">Abonnement</a></li>
+        <li><a href="{% url "logout" %}" class="block w-100 h-100">Se déconnecter</a></li>
     {% else %}
-        <li><a href="{% url "signup" %}">s'inscrire</a></li>
+        {#<li><a href="{% url "signup" %}">s'inscrire</a></li>#}
     {% endif %}
 </ul>
 
