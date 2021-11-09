@@ -1,3 +1,5 @@
+from pprint import pprint
+
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import redirect, render
@@ -73,35 +75,33 @@ class ReviewDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
 
 
 def new_review_and_ticket(request):
+    pprint(request.POST)
     if request.method == "POST":
-        try:
-            ticket_id = request.POST.get('ticket')
-            ticket = Ticket.objects.get(pk=ticket_id)
-        except ObjectDoesNotExist:
-            user = request.user
-            title = request.POST.get('title')
-            description = request.POST.get('description')
-            image = request.POST.get('image')
-            ticket_form = TicketForm(request.POST, request.FILES)
-            if ticket_form.is_valid():
-                ticket = Ticket.objects.create(title=title,
-                                               description=description,
-                                               image=image,
-                                               user=user)
-                ticket.save()
-        rating = request.POST.get('rating')
-        headline = request.POST.get('headline')
-        body = request.POST.get('body')
         user = request.user
-        form = ReviewUpdateForm(request.POST, request.FILES)
-        if form.is_valid():
-            review = Review.objects.create(ticket=ticket,
-                                           rating=rating,
-                                           headline=headline,
-                                           body=body,
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        image = request.FILES.get('image')
+        pprint(image)
+        ticket_form = TicketForm(request.POST, request.FILES)
+        if ticket_form.is_valid():
+            ticket = Ticket.objects.create(title=title,
+                                           description=description,
+                                           image=image,
                                            user=user)
-            review.save()
-            return redirect('feed')
+            ticket.save()
+    rating = request.POST.get('rating')
+    headline = request.POST.get('headline')
+    body = request.POST.get('body')
+    user = request.user
+    form = ReviewUpdateForm(request.POST, request.FILES)
+    if form.is_valid():
+        review = Review.objects.create(ticket=ticket,
+                                       rating=rating,
+                                       headline=headline,
+                                       body=body,
+                                       user=user)
+        review.save()
+        return redirect('feed')
 
     form = ReviewUpdateForm()
     ticket_form = TicketForm()

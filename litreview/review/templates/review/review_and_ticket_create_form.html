@@ -1,10 +1,49 @@
 {% extends "litreview/base.html" %}
 
 {% block content %}
+    <h1 class="text-3xl text-center mb-3">Création d'un ticket et de sa critique</h1>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ ticket_form.as_ul }}
-        {{ form.as_ul }}
-        <button type="submit">Enregistrer</button>
+        <div class="container flex flex-col flex-wrap md:flex-row md:w-10/12 w-max m-auto border border-2 border-gray-500 border-solid p-3">
+            <div class="container flex flex-col">
+                <h2 class="text-center text-2xl">Création du ticket</h2>
+                <div class="container flex flex-col w-11/12 m-auto border border-2 border-gray-500 border-solid p-3 mb-3">
+                    <div class="container flex flex-col">
+                        <label for="{{ ticket_form.title.label }}">Titre de l'objet</label>
+                        {{ ticket_form.title }}
+                    </div>
+                    <div class="container flex flex-col">
+                        <label for="{{ ticket_form.description.label }}">Description de l'objet</label>
+                        {{ ticket_form.description }}
+                    </div>
+                    <div class="container flex flex-col">
+                        class=text-4xl text-center m-3 <label for="{{ ticket_form.image.label }}">Image de
+                        l'objet</label>
+                        {{ ticket_form.image }}
+                    </div>
+                </div>
+            </div>
+            <div class="container flex flex-col">
+                <h2 class="text-center text-2xl">Creation de la critique</h2>
+                <div class="container flex flex-col w-11/12 m-auto border border-2 border-gray-500 border-solid p-3">
+                    <div class="container flex flex-col">
+                        <label for="{{ form.rating.label }}">Votre note</label>
+                        {{ form.rating }}
+                    </div>
+                    <div class="container flex flex-col">
+                        <label for="{{ form.headline.label }}">Phrase d'accorche de votre critique</label>
+                        {{ form.headline }}
+                    </div>
+                    <div class="container flex flex-col">
+                        <label for="{{ form.body.label }}">Votre critique</label>
+                        {{ form.body }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container flex flex-row">
+            <button type="submit">Envoyer la critique</button>
+            <a href="{% url 'home' %}" class="button">Retour</a>
+        </div>
     </form>
 {% endblock %}

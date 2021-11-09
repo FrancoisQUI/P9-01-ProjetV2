@@ -1,5 +1,11 @@
 <div class="p-8 w-full bg-red-50 rounded-lg sahdow-lg overflow-hidden flex flex-col md:flex-col px-20">
-    <h1 class="text-base text-gray-400 font-normal">Une critique de "{{ review.ticket.title }}" par {{ review.user.username }} du {{ review.time_created }}</h1>
+    <h1 class="text-base text-gray-400 font-normal mb-5">
+        {% if review.user != request.user %}
+            Une critique de "{{ review.ticket.title }}" par {{ review.user.username }} du {{ review.time_created }}
+        {% else %}
+            Vous avez publié la critique de "{{ review.ticket.title }}" le {{ review.time_created }}
+        {% endif %}
+    </h1>
     <div class="container flex w-10/12 self-center">
         {% include "ticket/ticket_snippet.html" with ticket=review.ticket %}
     </div>
