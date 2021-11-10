@@ -11,5 +11,6 @@ class UserRegisterForm(UserCreationForm):
         widgets = {
             'username': TextInput(attrs={"placeholder": "Nom utilisateur"}),
             'password1': PasswordInput(attrs={"placeholder": "Mot de passe"}),
-            'password2': PasswordInput(attrs={"placeholder": "Répéter Mot de passe"}),
+            'password2': PasswordInput(attrs={"placeholder":
+                                       "Répéter Mot de passe"}),
         }

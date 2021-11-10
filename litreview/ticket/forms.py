@@ -9,4 +9,3 @@ class TicketForm(ModelForm):
         model = Ticket
         fields = ["title", "description", "image"]
         widget = {"image": ImageField()}
-

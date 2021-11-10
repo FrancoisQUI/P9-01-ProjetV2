@@ -22,4 +22,6 @@ def my_posts_view(request):
         reverse=True
     )
 
-    return render(request, template_name='my_posts/my_posts.html', context={'posts': posts})
+    return render(request,
+                  template_name='my_posts/my_posts.html',
+                  context={'posts': posts})

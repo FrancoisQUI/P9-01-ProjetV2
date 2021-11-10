@@ -10,13 +10,15 @@ from user_follow.models import UserFollows
 
 def feed_view(request):
     user = request.user
-    followed_users = list(UserFollows.objects.filter(user=user).values_list('followed_user', flat=True))
+    followed_users = list(UserFollows.objects.filter(user=user).
+                          values_list('followed_user', flat=True))
 
     reviews = Review.objects.filter(user__in=followed_users)
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
 
     reviews_from_my_tickets = Review.objects.filter(ticket__user=user)
-    reviews_from_my_tickets = reviews_from_my_tickets.annotate(content_type=Value('REVIEW', CharField()))
+    reviews_from_my_tickets = reviews_from_my_tickets.\
+        annotate(content_type=Value('REVIEW', CharField()))
 
     tickets = Ticket.objects.filter(user__in=followed_users)
     tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
@@ -30,4 +32,6 @@ def feed_view(request):
     # remove duplicates
     posts = list(dict.fromkeys(posts))
 
-    return render(request, template_name='feed/feed.html', context={'posts': posts})
+    return render(request,
+                  template_name='feed/feed.html',
+                  context={'posts': posts})

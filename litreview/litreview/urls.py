@@ -23,7 +23,6 @@ from my_posts.views import my_posts_view
 from feed.views import feed_view
 
 
-
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('', views.index, name='home'),
@@ -35,5 +34,7 @@ urlpatterns = [
                   path('review/', include('review.urls')),
                   path('follows/', include('user_follow.urls')),
               ] \
-              + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
-              + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+              + static(settings.STATIC_URL,
+                       document_root=settings.STATIC_ROOT) \
+              + static(settings.MEDIA_URL,
+                       document_root=settings.MEDIA_ROOT)

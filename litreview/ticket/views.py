@@ -1,6 +1,7 @@
 from django import forms
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, UpdateView, CreateView, DeleteView, ListView
+from django.views.generic import DetailView, UpdateView, \
+    CreateView, DeleteView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from ticket.models import Ticket
@@ -61,5 +62,3 @@ class TicketDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     def test_func(self):
         self.object = self.get_object()
         return self.object.user == self.request.user
-
-

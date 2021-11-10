@@ -22,6 +22,3 @@ class ReviewFormFromTicket(ModelForm):
         model = Review
         fields = ["rating", "headline", "body"]
         widgets = {"rating": RadioSelect()}
-
-
-

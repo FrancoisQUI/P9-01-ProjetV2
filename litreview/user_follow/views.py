@@ -20,11 +20,13 @@ def manage_follow_view(request):
         form = NewFollowForm(request.POST)
         if form.is_valid():
             try:
-                follow = UserFollows.objects.create(user=user, followed_user=followed_user)
+                follow = UserFollows.objects.\
+                    create(user=user, followed_user=followed_user)
                 follow.save()
                 return redirect('follows')
             except IntegrityError:
-                context['error_message'] = f'Vous suivez déjà cette personne : {followed_user}'
+                context['error_message'] = \
+                    f'Vous suivez déjà cette personne : {followed_user}'
 
     user_pk = request.user.id
     follows = UserFollows.objects.filter(user_id=user_pk)

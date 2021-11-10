@@ -1,16 +1,16 @@
 from pprint import pprint
 
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, \
+    UpdateView, DeleteView
 
-from review.forms import ReviewCreateForm, ReviewUpdateForm, ReviewFormFromTicket
+from review.forms import ReviewCreateForm, ReviewUpdateForm, \
+    ReviewFormFromTicket
 from review.models import Review
 from ticket.forms import TicketForm
 from ticket.models import Ticket
-
 
 
 class ReviewListView(LoginRequiredMixin, ListView):
@@ -49,7 +49,8 @@ class ReviewUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     context_object_name = "review"
 
     def get_context_data(self, *args, **kwargs):
-        context = super(ReviewUpdateView, self).get_context_data(*args, **kwargs)
+        context = super(ReviewUpdateView, self).\
+            get_context_data(*args, **kwargs)
         context['show_ticket_only'] = True
         return context
 
