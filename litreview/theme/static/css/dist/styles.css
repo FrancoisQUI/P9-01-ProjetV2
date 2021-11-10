@@ -1043,6 +1043,16 @@ button, .button {
   width: 100vw;
 }
 
+.w-max {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.w-11\/12 {
+  width: 91.666667%;
+}
+
 .w-8\/12 {
   width: 66.666667%;
 }
@@ -1053,16 +1063,6 @@ button, .button {
 
 .w-5\/12 {
   width: 41.666667%;
-}
-
-.w-11\/12 {
-  width: 91.666667%;
-}
-
-.w-max {
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
 }
 
 .flex-shrink-0 {
@@ -1209,9 +1209,19 @@ button, .button {
   vertical-align: middle;
 }
 
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
 
 .text-base {
@@ -1222,16 +1232,6 @@ button, .button {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
-}
-
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-}
-
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
 }
 
 .font-normal {
@@ -1299,10 +1299,6 @@ button, .button {
 
   .md\:w-3\/5 {
     width: 60%;
-  }
-
-  .md\:w-5\/12 {
-    width: 41.666667%;
   }
 
   .md\:flex-row {
