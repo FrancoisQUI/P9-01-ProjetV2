@@ -20,7 +20,7 @@
                     {% for follow in follows %}
                         <li class="w-full md:w-6/12 flex items-center justify-center bg-blue-200 h-20 flex-shrink-0">
                             <p class="w-full flex items-center justify-center">{{ follow.followed_user }}</p>
-                            <form action="{% url 'follows_delete' follow.id %}"
+                            <form action="{% url 'follows_delete' follow.pk %}"
                                   class="w-6/12 flex items-center justify-center">
                                 <button type="submit" class="bg-red-500">Enlever</button>
                             </form>

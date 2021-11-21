@@ -1,3 +1,5 @@
+from pprint import pprint
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
@@ -13,14 +15,28 @@ from .models import UserFollows
 @login_required
 def manage_follow_view(request):
     context = {}
+    user = request.user
+    user_pk = request.user.id
+    follows_pk = [user_follow.followed_user.id for user_follow in UserFollows.objects.filter(user_id=user_pk)]
+    follows = UserFollows.objects.filter(user_id=user_pk)
+    followers = UserFollows.objects.filter(followed_user_id=user_pk)
+    choices = User.objects.all().exclude(pk=user_pk)\
+        .exclude(pk__in=follows_pk)\
+        .values_list("pk", "username")
+
+    pprint(choices)
+
+    form = NewFollowForm(request.POST, choices=choices)
+
     if request.method == 'POST':
-        followed_user_pk = request.POST.get('followed_user')
+        pprint(request.POST)
+        followed_user_pk = request.POST.get('followed_user_pk')
         followed_user = User.objects.get(pk=followed_user_pk)
-        user = request.user
-        form = NewFollowForm(request.POST)
+        follows = UserFollows.objects.filter(user_id=user_pk)
+        followers = UserFollows.objects.filter(followed_user_id=user_pk)
         if form.is_valid():
             try:
-                follow = UserFollows.objects.\
+                follow = UserFollows.objects. \
                     create(user=user, followed_user=followed_user)
                 follow.save()
                 return redirect('follows')
@@ -28,10 +44,6 @@ def manage_follow_view(request):
                 context['error_message'] = \
                     f'Vous suivez déjà cette personne : {followed_user}'
 
-    user_pk = request.user.id
-    follows = UserFollows.objects.filter(user_id=user_pk)
-    followers = UserFollows.objects.filter(followed_user_id=user_pk)
-    form = NewFollowForm()
     context["follows"] = follows
     context["followers"] = followers
     context["form"] = form

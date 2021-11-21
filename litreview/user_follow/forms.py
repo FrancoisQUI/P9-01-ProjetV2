@@ -1,10 +1,12 @@
-from django.forms import ModelForm
-
-from .models import UserFollows
+from django.forms import ChoiceField, Form
 
 
-class NewFollowForm(ModelForm):
+class NewFollowForm(Form):
+
+    def __init__(self, *args, choices, **kwargs):
+        super(NewFollowForm, self).__init__(*args, **kwargs)
+        self.fields['followed_user_pk'] = ChoiceField(choices=choices)
 
     class Meta:
-        model = UserFollows
-        fields = ['followed_user']
+        fields = ['followed_user_pk']
+
