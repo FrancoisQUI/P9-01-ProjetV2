@@ -46,7 +46,7 @@ pip install -r requirements.txt
 ## Start the APP
 This app is in development : if you want to deploy it in production please follow [this guidiline](https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/) ie : don't forget to change and hide the APPKEY.
 
-- Start the server (from the P9-01-ProjetV2 directory) 
+- Start the server (from the project 'litreview' directory) 
 ```shell
 python manage.py runserver 
 ```
