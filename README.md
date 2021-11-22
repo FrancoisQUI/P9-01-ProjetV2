@@ -51,6 +51,11 @@ This app is in development : if you want to deploy it in production please follo
 python manage.py runserver 
 ```
 - Start the Tailwind tools (With Browsersync for front developpement)
+First Time Only :
+```shell
+python manage.py tailwind install
+```
+Then :
 ```shell
 python manage.py tailwind start
 ```
