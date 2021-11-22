@@ -57,6 +57,30 @@ python manage.py tailwind start
 - Acces to the application with your favorite Browser : 
 [https://127.0.0.1:8000/](https://127.0.0.1:8000/)
 
+### Database
+#### Use current database :
+the current database contain a base admin account and some exemples
+
+Current admin :
+    User : admin
+    Password : admin
+
+#### Create a new database :
+Delete file _litreview/db.sqlite3_
+
+Migrate with command: 
+```shell
+python manage.py migrate
+```
+
+Create the Admin Account :
+```shell
+python manage.py createsuperuser
+```
+and follow instructions
+
+Don't forget to restart your server.
+
 ## More
 ### Make a flake8 report to check pep8:
 from the project directory : 
